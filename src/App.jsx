@@ -1,12 +1,13 @@
 import './App.css';
+import Banner from './pages/home/banner/Banner';
 import Navbar from './pages/home/navbar/Navbar';
 
 function App() {
   return (
-    <>
+    <div>
       <Navbar></Navbar>
-      <h1 className="text-3xl text-orange-800">This is Home page</h1>
-    </>
+      <Banner></Banner>
+    </div>
   );
 }
 
