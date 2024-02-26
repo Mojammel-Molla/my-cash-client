@@ -1,12 +1,12 @@
+import { Outlet } from 'react-router-dom';
 import './App.css';
-import Banner from './pages/home/banner/Banner';
-import Navbar from './pages/home/navbar/Navbar';
+import Navbar from './pages/home-page/navbar/Navbar';
 
 function App() {
   return (
     <div>
       <Navbar></Navbar>
-      <Banner></Banner>
+      <Outlet></Outlet>
     </div>
   );
 }

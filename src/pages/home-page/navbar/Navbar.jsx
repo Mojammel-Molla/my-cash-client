@@ -18,6 +18,9 @@ const Navbar = () => {
       <NavLink>
         <li>Balance</li>
       </NavLink>
+      <NavLink to="login">
+        <li>Log In</li>
+      </NavLink>
     </>
   );
   return (
@@ -58,7 +61,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Log In</a>
+        <a className="btn">Request Money</a>
       </div>
     </div>
   );
