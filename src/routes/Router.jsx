@@ -4,6 +4,8 @@ import LogIn from './../pages/log-in/LogIn';
 import Home from '../pages/home-page/home/Home';
 import Register from '../pages/register/Register';
 import AllUsers from '../pages/all-users/AllUsers';
+import Transactions from '../pages/transactions/Transactions';
+import Commissions from './../pages/commissions/Commissions';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,14 @@ const router = createBrowserRouter([
       {
         path: '/all-users',
         element: <AllUsers />,
+      },
+      {
+        path: '/transactions',
+        element: <Transactions />,
+      },
+      {
+        path: '/commissions',
+        element: <Commissions />,
       },
     ],
   },

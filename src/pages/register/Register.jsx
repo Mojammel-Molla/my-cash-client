@@ -29,6 +29,7 @@ const Register = () => {
         phone: data.phone,
         accountType: data.accountType,
         nid: res.data.data.display_url,
+        balance: data.accountType === 'user' ? '40' : '100000',
         pin: data.pin,
       };
       const userRes = await axios.post('/users', newUser);

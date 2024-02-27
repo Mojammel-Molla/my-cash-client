@@ -13,15 +13,7 @@ const Navbar = () => {
       >
         <li>Home</li>
       </NavLink>
-      <NavLink>
-        <li>Sent Money</li>
-      </NavLink>
-      <NavLink>
-        <li>Received Money</li>
-      </NavLink>
-      <NavLink>
-        <li>Transactions</li>
-      </NavLink>
+
       <NavLink
         to="/all-users"
         className={({ isActive }) =>
@@ -30,7 +22,20 @@ const Navbar = () => {
       >
         <li>All Users</li>
       </NavLink>
-      <NavLink>
+      <NavLink
+        to="/transactions"
+        className={({ isActive }) =>
+          isActive ? 'text-blue-600 underline' : ''
+        }
+      >
+        <li>Transactions</li>
+      </NavLink>
+      <NavLink
+        to="/commissions"
+        className={({ isActive }) =>
+          isActive ? 'text-blue-600 underline' : ''
+        }
+      >
         <li>Commissions</li>
       </NavLink>
       <NavLink to="login">
