@@ -1,9 +1,16 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import LogoImage from '../../../assets/cash-logo.png';
+import { useState } from 'react';
 const Navbar = () => {
+  const [isShow, setIsShow] = useState(false);
   const navLinks = (
     <>
-      <NavLink>
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          isActive ? 'text-blue-600 underline' : ''
+        }
+      >
         <li>Home</li>
       </NavLink>
       <NavLink>
@@ -15,8 +22,16 @@ const Navbar = () => {
       <NavLink>
         <li>Transactions</li>
       </NavLink>
+      <NavLink
+        to="/all-users"
+        className={({ isActive }) =>
+          isActive ? 'text-blue-600 underline' : ''
+        }
+      >
+        <li>All Users</li>
+      </NavLink>
       <NavLink>
-        <li>Balance</li>
+        <li>Commissions</li>
       </NavLink>
       <NavLink to="login">
         <li>Log In</li>
@@ -51,8 +66,8 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex">
-          <img className="h-10 w-16" src={LogoImage} alt="" />
-          <a className="text-[#0074d9]  text-2xl font-bold">My Cash</a>
+          <img className="h-10 w-16 " src={LogoImage} alt="" />
+          <a className="text-[#0074d9]  md:text-2xl font-bold">My Cash</a>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -61,7 +76,19 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Request Money</a>
+        <div className=" bg-blue-500 btn mr-5 hover:bg-blue-500">
+          <button
+            onClick={() => setIsShow(!isShow)}
+            className="bg-white font-medium rounded-3xl p-1 min-w-20"
+          >
+            ${isShow ? '100000' : 'Balance'}
+          </button>
+        </div>
+        <Link to="/register">
+          <button className="bg-blue-500 btn font-semibold text-white hover:bg-blue-500">
+            Register
+          </button>
+        </Link>
       </div>
     </div>
   );

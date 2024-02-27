@@ -1,11 +1,12 @@
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import UseAxios from '../../hooks/UseAxios';
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_key}`;
 const Register = () => {
   const axios = UseAxios();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -36,6 +37,7 @@ const Register = () => {
         alert('User added to the database');
       }
       console.log(res.data);
+      navigate('/');
     }
   };
   return (
