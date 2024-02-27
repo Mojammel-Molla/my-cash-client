@@ -1,12 +1,7 @@
 import { useState } from 'react';
 import PaymentModal from './PaymentModal';
-
-const SingleUser = ({
-  handleCashIn,
-
-  handleDelete,
-  usersData,
-}) => {
+import SampleNid from '../../assets/dummy-nid.jpg';
+const SingleUser = ({ handleCashIn, handleDelete, usersData }) => {
   const [showModal, setShowModal] = useState(false);
   return (
     <div>
@@ -27,13 +22,16 @@ const SingleUser = ({
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
               {usersData?.map(user => (
                 <tr key={user._id}>
                   <th>
                     <div className="avatar">
                       <div className="mask  w-12 h-12">
-                        <img src={user.nid} alt="Nid" />
+                        {user.nid ? (
+                          <img src={user.nid} alt="Nid" />
+                        ) : (
+                          <img src={SampleNid} alt="Nid" />
+                        )}
                       </div>
                     </div>
                   </th>
