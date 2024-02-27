@@ -1,4 +1,15 @@
+import { useEffect, useState } from 'react';
+import UseAxios from '../../hooks/UseAxios';
+
 const Transactions = () => {
+  const axios = UseAxios();
+  const [allTransaction, setAllTransaction] = useState([]);
+  useEffect(() => {
+    axios.get('/transactions').then(res => {
+      setAllTransaction(res.data);
+    });
+  }, [axios]);
+  console.log(allTransaction);
   return (
     <div>
       <div className="overflow-x-auto">
@@ -14,22 +25,24 @@ const Transactions = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-              <td>1</td>
-              <td>
-                <div className="flex items-center gap-3">
-                  <div>
-                    <div className="font-semibold">Sender Name</div>
-                    <h1 className="font-normal">Account Type</h1>
+            {allTransaction.map((transaction, index) => (
+              <tr key={transaction._id}>
+                <td></td>
+                <td>{index + 1}</td>
+                <td>
+                  <div className="flex items-center gap-3">
+                    <div>
+                      <div className="font-semibold">{transaction.sender}</div>
+                      <h1 className="font-normal">{transaction.accountType}</h1>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td className="font-semibold">Receiver Name</td>
+                </td>
+                <td className="font-semibold">{transaction.receiver}</td>
 
-              <td>$100</td>
-              <td>$5</td>
-            </tr>
+                <td>{transaction.amount}</td>
+                <td>{transaction.fee}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

@@ -2,7 +2,11 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 const LogIn = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = data => {
     console.log(data);
@@ -18,24 +22,28 @@ const LogIn = () => {
               <span className="label-text">Email</span>
             </label>
             <input
-              {...register('email', { required: true })}
+              {...register('email', {
+                required: true,
+              })}
               type="email"
               placeholder="Your Email"
               className="input input-bordered"
               required
             />
+            {errors.email && <p>Please enter valid email.</p>}
           </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Pin Code</span>
             </label>
             <input
-              {...register('pin', { required: true })}
+              {...register('pin', { required: true, minLength: 5 })}
               type="number"
               placeholder="Your Pin Code"
               className="input input-bordered"
               required
             />
+            {errors.pin && <p>Please enter 5 digits pin.</p>}
             <label className="label">
               <p href="#" className="label-text-alt ">
                 Haven't register yet? Please{' '}

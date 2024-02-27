@@ -1,8 +1,10 @@
 import { Link, NavLink } from 'react-router-dom';
 import LogoImage from '../../../assets/cash-logo.png';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import UseAxios from '../../../hooks/UseAxios';
 const Navbar = () => {
   const [isShow, setIsShow] = useState(false);
+  const axios = UseAxios();
   const navLinks = (
     <>
       <NavLink
@@ -43,6 +45,14 @@ const Navbar = () => {
       </NavLink>
     </>
   );
+
+  const userEmail = 'Kamal@gmail.com';
+  useEffect(() => {
+    axios.get(`/users?email=${userEmail}`).then(res => {
+      console.log(res.data);
+    });
+  }, [axios, userEmail]);
+
   return (
     <div className="navbar bg-base-100 border-b-2">
       <div className="navbar-start">

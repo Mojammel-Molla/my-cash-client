@@ -35,7 +35,7 @@ const Register = () => {
       const userRes = await axios.post('/users', newUser);
       console.log(userRes.data);
       if (userRes.data.insertedId) {
-        alert('User added to the database');
+        alert('User has been registered');
       }
       console.log(res.data);
       navigate('/');
@@ -64,13 +64,17 @@ const Register = () => {
                 <span className="label-text">Phone No:</span>
               </label>
               <input
-                {...register('phone', { required: true })}
+                {...register('phone', { required: true, minLength: 11 })}
                 type="number"
                 placeholder="Your Phone Number"
                 className="input input-bordered"
                 required
               />
-              <p>{errors.phone?.message}</p>
+              {errors.phone && (
+                <p className="text-red-500">
+                  Phone number must have to be 11 digit.
+                </p>
+              )}
             </div>
           </div>
           <div className="form-control">
@@ -108,12 +112,15 @@ const Register = () => {
               <span className="label-text">Pin Code:</span>
             </label>
             <input
-              {...register('pin', { required: true, minLength: 5 })}
+              {...register('pin', { required: true, min: 5 })}
               type="number"
               placeholder="Your Pin Code"
               className="input input-bordered"
               required
             />
+            {errors.pin && (
+              <p className="text-red-500">Pin must have to be 5 digit.</p>
+            )}
           </div>
           <div className="form-control">
             <label className="label">
