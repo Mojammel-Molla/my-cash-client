@@ -9,6 +9,8 @@ import Commissions from './../pages/commissions/Commissions';
 import CashInModal from '../pages/all-users/CashInModal';
 import SendMoneyModal from '../pages/all-users/SendMoneyModal';
 import CashOutModal from '../pages/all-users/CashOutModal';
+import RequestMoney from '../pages/request-money/RequestMoney';
+import AllRequests from '../pages/request-money/AllRequests';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
       {
         path: '/cash-out',
         element: <CashOutModal />,
+      },
+      {
+        path: '/request-money',
+        element: <RequestMoney />,
+      },
+      {
+        path: '/all-requests',
+        element: <AllRequests />,
       },
     ],
   },

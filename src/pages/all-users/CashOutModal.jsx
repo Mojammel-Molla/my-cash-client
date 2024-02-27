@@ -14,23 +14,29 @@ const CashOutModal = () => {
   } = useForm();
 
   const onSubmit = data => {
-    const sendMoneyData = {
+    const cashOutData = {
       sender: usersName[0].name,
       receiver: data.payUser,
       amount: data.payAmount,
       accountType: 'user',
-      // fee: (data.payAmount / 100) * (0.05).toFixed(2),
-      fee: 5,
+      fee: (data.payAmount / 100) * (1.5).toFixed(2),
+      method: 'Cash Out',
     };
-    navigate('/all-users');
-    console.log(sendMoneyData);
-    // axios.post('/transactions', sendMoneyData).then(res => {
-    //   console.log(res.data, sendMoneyData, sendMoneyData.fee);
-    //   if (res.data.insertedId) {
-    //     alert('Payment has been sent');
-    //     setSendMoneyModal(false);
-    //   }
-    // });
+    console.log(cashOutData);
+
+    axios.post('/commissions', cashOutData).then(res => {
+      if (res.data.insertedId) {
+        console.log('Data posted to the commission ', res.data);
+      }
+    });
+
+    axios.post('/transactions', cashOutData).then(res => {
+      console.log(res.data, cashOutData.fee);
+      if (res.data.insertedId) {
+        alert('Cash out successfully');
+        navigate('/all-users');
+      }
+    });
   };
   useEffect(() => {
     axios.get('/users').then(res => {

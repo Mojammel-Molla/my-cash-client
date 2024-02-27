@@ -19,14 +19,16 @@ const CashInModal = () => {
       receiver: data.payUser,
       amount: data.payAmount,
       accountType: 'user',
-      fee: 'No fee Applicable',
+      fee: 'No fee for cash in',
+      method: 'Cash In',
     };
-    navigate('/all-users');
+
     console.log(cashInData);
     axios.post('/transactions', cashInData).then(res => {
       console.log(res.data);
       if (res.data.insertedId) {
         alert('Cash in successfully');
+        navigate('/all-users');
       }
     });
   };

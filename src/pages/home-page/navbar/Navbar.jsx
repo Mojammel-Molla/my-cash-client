@@ -40,6 +40,14 @@ const Navbar = () => {
       >
         <li>Commissions</li>
       </NavLink>
+      <NavLink
+        to="/all-requests"
+        className={({ isActive }) =>
+          isActive ? 'text-blue-600 underline' : ''
+        }
+      >
+        <li>All Requests</li>
+      </NavLink>
       <NavLink to="login">
         <li>Log In</li>
       </NavLink>
@@ -99,9 +107,9 @@ const Navbar = () => {
             ${isShow ? '100000' : 'Balance'}
           </button>
         </div>
-        <Link to="/register">
+        <Link to="/request-money">
           <button className="bg-blue-500 btn font-semibold text-white hover:bg-blue-500">
-            Register
+            Request Money
           </button>
         </Link>
       </div>

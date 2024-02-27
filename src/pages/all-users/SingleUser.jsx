@@ -48,17 +48,20 @@ const SingleUser = ({ handleDelete, usersData }) => {
                   <td>{user.email}</td>
                   <td>
                     <Link to="/send-money">
-                      <button className="btn bg-green-500 text-white btn-sm ">
+                      <button className="btn bg-green-500 hover:bg-green-700 text-white btn-sm ">
                         Sent Money
                       </button>
                     </Link>
                     <Link to="/cash-in">
-                      <button className="btn bg-lime-500 text-white btn-sm mx-2">
+                      <button className="btn bg-lime-500 hover:bg-lime-700 text-white btn-sm mx-2">
                         Cash In
                       </button>
                     </Link>
                     <Link to="/cash-out">
-                      <button className="btn bg-orange-500 text-white btn-sm">
+                      <button
+                        className="btn bg-orange-400 hover:bg-orange-600
+                      text-white btn-sm"
+                      >
                         Cash Out
                       </button>
                     </Link>
@@ -67,7 +70,7 @@ const SingleUser = ({ handleDelete, usersData }) => {
                   <th>
                     <button
                       onClick={() => handleDelete(user._id)}
-                      className="btn btn-ghost  text-red-700"
+                      className="btn btn-sm  text-white bg-red-600 hover:bg-red-800"
                     >
                       Delete
                     </button>
