@@ -39,8 +39,8 @@ const Transactions = () => {
                 </td>
                 <td className="font-semibold">{transaction.receiver}</td>
 
-                <td>{transaction.amount}</td>
-                <td>{transaction.fee}</td>
+                <td>${transaction.amount}</td>
+                <td>${transaction.fee}</td>
               </tr>
             ))}
           </tbody>

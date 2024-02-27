@@ -1,9 +1,11 @@
 import { useForm } from 'react-hook-form';
 import UseAxios from '../../hooks/UseAxios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const PaymentModal = ({ setShowModal }) => {
+const SendMoneyModal = () => {
   const axios = UseAxios();
+  const navigate = useNavigate();
   const [usersName, setUsersName] = useState([]);
   const {
     register,
@@ -17,24 +19,38 @@ const PaymentModal = ({ setShowModal }) => {
       receiver: data.payUser,
       amount: data.payAmount,
       accountType: 'user',
-      fee: (data.payAmount / 100) * (0.05).toFixed(2),
+      // fee: (data.payAmount / 100) * (0.05).toFixed(2),
+      fee: data.payAmount >= 100 ? 5 : 'No fee Applicable',
+    };
+    const commissionData = {
+      sender: usersName[0].name,
+      receiver: data.payUser,
+      amount: data.payAmount,
+      accountType: 'user',
+      fee: data.payAmount >= 100 ? 5 : 'No fee Applicable',
+      method: 'Send Money',
     };
 
+    if (data.payAmount >= 100) {
+      axios.post('/commissions', commissionData).then(res => {
+        if (res.data.insertedId) {
+          console.log('Data posted to the commission ', res.data);
+        }
+      });
+    }
     axios.post('/transactions', sendMoneyData).then(res => {
-      console.log(res.data, sendMoneyData, sendMoneyData.fee);
+      console.log(res.data);
       if (res.data.insertedId) {
         alert('Payment has been sent');
-        setShowModal(false);
+        navigate('/all-users');
       }
     });
   };
   useEffect(() => {
     axios.get('/users').then(res => {
-      console.log(res.data);
       setUsersName(res.data);
     });
   }, [axios]);
-  console.log(usersName);
   return (
     <div className="h-full mt-20 justify-center">
       <div className="card shrink-0 w-full mx-auto max-w-lg shadow-2xl bg-base-100 my-auto">
@@ -66,7 +82,7 @@ const PaymentModal = ({ setShowModal }) => {
               required
             />
             {errors.payAmount && (
-              <p className="text-red-500">Minimum transaction limit is 100.</p>
+              <p className="text-red-500">Minimum transaction limit is 50!</p>
             )}
           </div>
           <div className="form-control mt-6">
@@ -80,4 +96,4 @@ const PaymentModal = ({ setShowModal }) => {
   );
 };
 
-export default PaymentModal;
+export default SendMoneyModal;

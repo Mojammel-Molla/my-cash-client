@@ -11,12 +11,6 @@ const AllUsers = () => {
 
   console.log(data);
 
-  const handleSendMoney = id => {
-    console.log(`Money sent to the user of ${id}`);
-  };
-  const handleCashIn = id => {
-    console.log(`Cash in to the user of ${id}`);
-  };
   const handleDelete = id => {
     confirm('Are your sure to delete?', { id });
 
@@ -31,8 +25,6 @@ const AllUsers = () => {
   return (
     <div>
       <SingleUser
-        handleCashIn={handleCashIn}
-        handleSendMoney={handleSendMoney}
         handleDelete={handleDelete}
         usersData={data}
         refetch={refetch}

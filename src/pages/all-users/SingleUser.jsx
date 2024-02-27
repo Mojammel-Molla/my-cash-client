@@ -1,16 +1,18 @@
 import { useState } from 'react';
-import PaymentModal from './PaymentModal';
+import SendMoneyModal from './SendMoneyModal';
 import SampleNid from '../../assets/dummy-nid.jpg';
-const SingleUser = ({ handleCashIn, handleDelete, usersData }) => {
-  const [showModal, setShowModal] = useState(false);
+import { Link } from 'react-router-dom';
+const SingleUser = ({ handleDelete, usersData }) => {
+  const [sendMoneyModal, setSendMoneyModal] = useState(false);
+
   return (
     <div>
-      {showModal ? (
-        <PaymentModal setShowModal={setShowModal} />
+      {/* Send Money modal start here */}
+      {sendMoneyModal ? (
+        <SendMoneyModal setSendMoneyModal={setSendMoneyModal} />
       ) : (
         <div className="overflow-x-auto">
           <table className="table">
-            {/* head */}
             <thead>
               <tr>
                 <th>NID</th>
@@ -45,18 +47,21 @@ const SingleUser = ({ handleCashIn, handleDelete, usersData }) => {
                   </td>
                   <td>{user.email}</td>
                   <td>
-                    <button
-                      onClick={() => setShowModal(!showModal)}
-                      className="btn bg-green-500 text-white btn-sm mr-2"
-                    >
-                      Sent Money
-                    </button>
-                    <button
-                      onClick={() => handleCashIn(user._id)}
-                      className="btn bg-lime-500 text-white btn-sm"
-                    >
-                      Cash In
-                    </button>
+                    <Link to="/send-money">
+                      <button className="btn bg-green-500 text-white btn-sm ">
+                        Sent Money
+                      </button>
+                    </Link>
+                    <Link to="/cash-in">
+                      <button className="btn bg-lime-500 text-white btn-sm mx-2">
+                        Cash In
+                      </button>
+                    </Link>
+                    <Link to="/cash-out">
+                      <button className="btn bg-orange-500 text-white btn-sm">
+                        Cash Out
+                      </button>
+                    </Link>
                   </td>
                   <td>${user.balance}</td>
                   <th>
@@ -73,6 +78,11 @@ const SingleUser = ({ handleCashIn, handleDelete, usersData }) => {
           </table>
         </div>
       )}
+      {/* Send Money modal end here */}
+
+      {/* Cash in modal start here */}
+
+      {/* Cash in modal end here */}
     </div>
   );
 };

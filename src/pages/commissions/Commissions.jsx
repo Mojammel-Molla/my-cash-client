@@ -1,4 +1,15 @@
+import { useEffect, useState } from 'react';
+import UseAxios from '../../hooks/UseAxios';
+
 const Commissions = () => {
+  const axios = UseAxios();
+  const [allCommissions, setAllCommissions] = useState([]);
+  useEffect(() => {
+    axios.get('/commissions').then(res => {
+      setAllCommissions(res.data);
+    });
+  }, [axios]);
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -10,26 +21,30 @@ const Commissions = () => {
               <th>Sender</th>
               <th>Receiver</th>
               <th>Amount</th>
+              <th>Method</th>
               <th>Commission Fee</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-              <td>1</td>
-              <td>
-                <div className="flex items-center gap-3">
-                  <div>
-                    <div className="font-semibold">Sender Name</div>
-                    <h1 className="font-normal">Account Type</h1>
+            {allCommissions?.map((commission, index) => (
+              <tr key={commission._id}>
+                <td></td>
+                <td>{index + 1}</td>
+                <td>
+                  <div className="flex items-center gap-3">
+                    <div>
+                      <div className="font-semibold">{commission.sender}</div>
+                      <h1 className="font-normal">{commission.accountType}</h1>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td className="font-semibold">Receiver Name</td>
+                </td>
+                <td className="font-semibold">{commission.receiver}</td>
 
-              <td>$100</td>
-              <td>$5</td>
-            </tr>
+                <td>${commission.amount}</td>
+                <td>{commission.method}</td>
+                <td>${commission.fee}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

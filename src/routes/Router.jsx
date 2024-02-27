@@ -6,6 +6,9 @@ import Register from '../pages/register/Register';
 import AllUsers from '../pages/all-users/AllUsers';
 import Transactions from '../pages/transactions/Transactions';
 import Commissions from './../pages/commissions/Commissions';
+import CashInModal from '../pages/all-users/CashInModal';
+import SendMoneyModal from '../pages/all-users/SendMoneyModal';
+import CashOutModal from '../pages/all-users/CashOutModal';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +30,18 @@ const router = createBrowserRouter([
       {
         path: '/commissions',
         element: <Commissions />,
+      },
+      {
+        path: '/send-money',
+        element: <SendMoneyModal />,
+      },
+      {
+        path: '/cash-in',
+        element: <CashInModal />,
+      },
+      {
+        path: '/cash-out',
+        element: <CashOutModal />,
       },
     ],
   },
