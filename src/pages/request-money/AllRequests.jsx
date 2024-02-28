@@ -40,7 +40,11 @@ const AllRequests = () => {
 
                 <td>{request.massage}</td>
 
-                <td>Sent Money</td>
+                <td>
+                  <button className="btn bg-green-500 hover:bg-green-700 text-white btn-sm ">
+                    Sent Money
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

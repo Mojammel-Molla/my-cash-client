@@ -11,6 +11,7 @@ import SendMoneyModal from '../pages/all-users/SendMoneyModal';
 import CashOutModal from '../pages/all-users/CashOutModal';
 import RequestMoney from '../pages/request-money/RequestMoney';
 import AllRequests from '../pages/request-money/AllRequests';
+import UserTransactions from '../pages/user-transactions/UserTransactions';
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: '/all-requests',
         element: <AllRequests />,
+      },
+      {
+        path: '/user-transactions/:email',
+        element: <UserTransactions />,
       },
     ],
   },

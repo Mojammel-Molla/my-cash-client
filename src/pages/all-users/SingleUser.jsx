@@ -40,7 +40,11 @@ const SingleUser = ({ handleDelete, usersData }) => {
                   <td>
                     <div className="flex items-center gap-3">
                       <div>
-                        <div className="font-bold">{user.name}</div>
+                        <Link to={`/user-transactions/${user.name}`}>
+                          <button className=" btn btn-xs font-bold">
+                            {user.name}
+                          </button>
+                        </Link>
                         <h1 className="font-medium">{user.accountType}</h1>
                       </div>
                     </div>

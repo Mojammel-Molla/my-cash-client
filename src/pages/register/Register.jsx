@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import UseAxios from '../../hooks/UseAxios';
-
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_key}`;
 const Register = () => {
@@ -35,7 +34,7 @@ const Register = () => {
       const userRes = await axios.post('/users', newUser);
       console.log(userRes.data);
       if (userRes.data.insertedId) {
-        alert('User has been registered');
+        alert('User created successfully');
       }
       console.log(res.data);
       navigate('/');
@@ -71,9 +70,7 @@ const Register = () => {
                 required
               />
               {errors.phone && (
-                <p className="text-red-500">
-                  Phone number must have to be 11 digit.
-                </p>
+                <p className="text-red-500">Number must have to be 11 digit!</p>
               )}
             </div>
           </div>
@@ -112,14 +109,14 @@ const Register = () => {
               <span className="label-text">Pin Code:</span>
             </label>
             <input
-              {...register('pin', { required: true, min: 5 })}
+              {...register('pin', { required: true, minLength: 5 })}
               type="number"
               placeholder="Your Pin Code"
               className="input input-bordered"
               required
             />
             {errors.pin && (
-              <p className="text-red-500">Pin must have to be 5 digit.</p>
+              <p className="text-red-500">Pin must have to be 5 digit!</p>
             )}
           </div>
           <div className="form-control">

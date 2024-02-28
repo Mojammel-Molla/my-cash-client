@@ -1,15 +1,28 @@
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import UseAxios from '../../hooks/UseAxios';
+import { useEffect, useState } from 'react';
 
 const LogIn = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  // const [transactions, setTransactions] = useState([]);
+  // const axios = UseAxios();
+  // useEffect(() => {
+  //   axios.get(`/users/?email=${'motin@gmail.com'}`).then(res => {
+  //     setTransactions(res.data);
+  //     const name = 'munna';
+  //     console.log(transactions);
+  //   });
+  // }, [axios ]);
 
   const onSubmit = data => {
     console.log(data);
+    navigate('/');
   };
 
   return (

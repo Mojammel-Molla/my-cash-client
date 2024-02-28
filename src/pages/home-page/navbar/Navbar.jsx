@@ -54,10 +54,10 @@ const Navbar = () => {
     </>
   );
 
-  const userEmail = 'Kamal@gmail.com';
+  const userEmail = 'kamal@gmail.com';
   useEffect(() => {
     axios.get(`/users?email=${userEmail}`).then(res => {
-      console.log(res.data);
+      // console.log(res.data);
     });
   }, [axios, userEmail]);
 

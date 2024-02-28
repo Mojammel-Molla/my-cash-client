@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import UseAxios from '../../hooks/UseAxios';
 
-const Transactions = () => {
+const UserTransactions = () => {
   const axios = UseAxios();
-  const [allTransaction, setAllTransaction] = useState([]);
+  const [transactions, setTransactions] = useState([]);
+  const name = 'munna';
   useEffect(() => {
-    axios.get('/transactions').then(res => {
-      setAllTransaction(res.data);
+    axios.get(`/user-transactions/?name=${name}`).then(res => {
+      setTransactions(res.data);
     });
   }, [axios]);
-
+  console.log(transactions);
   return (
     <div>
       <div className="overflow-x-auto">
@@ -25,7 +26,7 @@ const Transactions = () => {
             </tr>
           </thead>
           <tbody>
-            {allTransaction.map((transaction, index) => (
+            {transactions?.map((transaction, index) => (
               <tr key={transaction._id}>
                 <td></td>
                 <td>{index + 1}</td>
@@ -50,4 +51,4 @@ const Transactions = () => {
   );
 };
 
-export default Transactions;
+export default UserTransactions;

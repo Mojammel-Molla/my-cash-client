@@ -15,7 +15,7 @@ const SendMoneyModal = () => {
 
   const onSubmit = data => {
     const sendMoneyData = {
-      sender: usersName[0].name,
+      sender: 'munna',
       receiver: data.payUser,
       amount: data.payAmount,
       accountType: 'user',
@@ -23,7 +23,7 @@ const SendMoneyModal = () => {
       fee: data.payAmount >= 100 ? 5 : 'No fee Applicable',
     };
     const commissionData = {
-      sender: usersName[0].name,
+      sender: 'munna',
       receiver: data.payUser,
       amount: data.payAmount,
       accountType: 'user',
@@ -31,20 +31,21 @@ const SendMoneyModal = () => {
       method: 'Send Money',
     };
 
-    if (data.payAmount >= 100) {
-      axios.post('/commissions', commissionData).then(res => {
-        if (res.data.insertedId) {
-          console.log('Data posted to the commission ', res.data);
-        }
-      });
-    }
-    axios.post('/transactions', sendMoneyData).then(res => {
-      console.log(res.data);
-      if (res.data.insertedId) {
-        alert('Payment has been sent');
-        navigate('/all-users');
-      }
-    });
+    console.log(commissionData, sendMoneyData);
+    // if (data.payAmount >= 100) {
+    //   axios.post('/commissions', commissionData).then(res => {
+    //     if (res.data.insertedId) {
+    //       console.log('Data posted to the commission ', res.data);
+    //     }
+    //   });
+    // }
+    // axios.post('/transactions', sendMoneyData).then(res => {
+    //   console.log(res.data);
+    //   if (res.data.insertedId) {
+    //     alert('Payment has been sent');
+    //     navigate('/all-users');
+    //   }
+    // });
   };
   useEffect(() => {
     axios.get('/users').then(res => {
