@@ -13,10 +13,10 @@ const LogIn = () => {
   const [user, setUser] = useState([]);
   const axios = UseAxios();
   useEffect(() => {
-    axios.get(`/users/?email=${'motin@gmail.com'}`).then(res => {
+    axios.get(`/user/?email=${'kashem@gmail.com'}`).then(res => {
       setUser(res.data);
 
-      console.log(user);
+      console.log('get a single user', user);
     });
   }, [axios, user]);
 
