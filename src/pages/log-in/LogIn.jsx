@@ -22,7 +22,9 @@ const LogIn = () => {
 
   const onSubmit = data => {
     if (data.email !== user.email) {
-      return alert('Please Enter a correct email');
+      return alert('Please enter a correct email');
+    } else if (data.pin !== user.pin) {
+      return alert('Please enter valid pin');
     }
     console.log(data);
     navigate('/');
