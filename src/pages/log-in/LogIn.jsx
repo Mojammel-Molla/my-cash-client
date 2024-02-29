@@ -10,17 +10,20 @@ const LogIn = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  // const [transactions, setTransactions] = useState([]);
-  // const axios = UseAxios();
-  // useEffect(() => {
-  //   axios.get(`/users/?email=${'motin@gmail.com'}`).then(res => {
-  //     setTransactions(res.data);
-  //     const name = 'munna';
-  //     console.log(transactions);
-  //   });
-  // }, [axios ]);
+  const [user, setUser] = useState([]);
+  const axios = UseAxios();
+  useEffect(() => {
+    axios.get(`/users/?email=${'motin@gmail.com'}`).then(res => {
+      setUser(res.data);
+
+      console.log(user);
+    });
+  }, [axios, user]);
 
   const onSubmit = data => {
+    if (data.email !== user.email) {
+      return alert('Please Enter a correct email');
+    }
     console.log(data);
     navigate('/');
   };
