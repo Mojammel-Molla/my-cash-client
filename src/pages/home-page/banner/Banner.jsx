@@ -12,7 +12,7 @@ const Banner = () => {
           <h1 className="text-4xl font-bold">
             Welcome to <span className=" text-[#0074d9]">My Cash</span>{' '}
           </h1>
-          <p className="py-6 font-\">
+          <p className="py-6 ">
             We provides secure and user-friendly online banking services,
             allowing customers to <br />
             effortlessly manage accounts, transfer funds, and access various
